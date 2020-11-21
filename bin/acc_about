@@ -1,0 +1,8 @@
+require 'require_all'
+require 'bundler/setup'
+require 'acc_about'
+require 'rest-client'
+require 'json'
+require 'pry'
+
+require_all 'lib'

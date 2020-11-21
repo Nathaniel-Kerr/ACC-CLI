@@ -1,0 +1,21 @@
+PATH
+  remote: .
+  specs:
+    acc_about (0.1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    rake (12.3.3)
+    gem 'nokogiri'
+    gem 'open-uri'
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  acc_about!
+  rake (~> 12.0)
+
+BUNDLED WITH
+   2.1.4
