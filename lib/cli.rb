@@ -18,33 +18,25 @@ class CLI
         input = gets.chomp
 
         if input == "yes"
-            Info.list_staff
-            puts ""
             make_selection
         elsif input == "no"
             "It was a pleasure to meet you!"
         else 
+            "Please enter 'yes' or 'no'"
             call_to_action
         end 
     end
 
     def make_selection
+        puts ""
+        Info.list_staff
+        puts ""
+        
         puts "Choose a name and enter the number to see position."
         input = gets.chomp.to_i
-
         if input > 33 
-            puts ""
-            puts "Invalid Input, Please try again."
-            puts ""
-            sleep(3)
-            Info.list_staff
-            puts ""
-            make_selection
-        else
-            puts ""
-            puts "You have picked #{Info.staff[input]} the #{Info.positions[input]}"
-            sleep(3)
-            go_again
+            invalid_input
+        else valid?  
         end
     end
 
@@ -54,7 +46,7 @@ class CLI
         input2 = gets.chomp 
 
         if input2 == "yes"
-            CLI.new
+            make_selection
         elsif input2 == "no" 
             puts ""
             puts "Thanks for checking in. BYE!"
@@ -65,14 +57,23 @@ class CLI
 
     def invalid_input
         puts ""
-        puts "Invalid Input. Go again? 'yes' - 'no'"
+        puts "INVALID INPUT."
+        go_again
+    end
+
+    def valid?
+        puts ""
+        puts "Enter again to verify your selection or choose new number."
         input = gets.chomp
 
-        if input == "yes"
-            CLI.new
-        else 
+        if input.chars.any? {|char| ('a'..'z').include? char.downcase}
+            invalid_input
+        else
+            input = input.to_i
             puts ""
-            puts "See ya, Thanks for your time!"
+            puts "You have picked #{Info.staff[input]} the #{Info.positions[input]}"
+            sleep(3)
+            go_again
         end
     end
 end

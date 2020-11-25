@@ -15,7 +15,7 @@ class Info
     end
 
     def self.positions
-        Scraper.positions[2..]
+        Scraper.positions
     end
 end
 Info.new

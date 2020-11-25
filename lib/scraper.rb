@@ -58,9 +58,9 @@ class Scraper
     end
 
     def self.positions
-        @@positions.delete('To follow Jesus every day.')
+        @@positions.delete('To follow Jesus every day. ')
         @@positions.delete('WORSHIP, COMMUNITY, SERVICE, & INFLUENCE.')
-        @@positions.delete('What We Teach')
+        @@positions.delete('What We Teach ')
         @@positions.delete('Pastor of Worship Arts')
         @@positions.delete('Compassion Center Director')
         @@positions
