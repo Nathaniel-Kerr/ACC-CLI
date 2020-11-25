@@ -1,8 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
-require 'pry'
 
-require_relative '../lib/cli.rb'
+require_relative '../lib/info.rb'
 
 class Scraper
 
@@ -11,6 +10,10 @@ class Scraper
     @@all = []
     @@staff = []
     @@positions = []
+
+    def initialize
+        get_page
+    end
 
     def get_page
         @doc = open("https://alderwood.cc/about/").read
@@ -32,7 +35,6 @@ class Scraper
     end
 
     def self.staff
-        @@staff.delete_at(14)
         @@staff.delete('Latest updates on our gatherings')
         @@staff.delete('About Us')
         @@staff.delete('who we are')
@@ -42,7 +44,7 @@ class Scraper
         @@staff.delete('our beliefs')
         @@staff.delete('Meet The Team')
         @@staff.delete('Executive Team')
-        @@staff.delete('Pastors')
+        @@staff.delete('Pastors ')
         @@staff.delete('Directors')
         @@staff.delete('Associate Directors')
         @@staff.delete('admins & support staff')
@@ -50,13 +52,12 @@ class Scraper
         @@staff.delete('Contact Us')
         @@staff.delete('Contact Information')
         @@staff.delete('ServIce Times And Location')
+        @@staff.delete('James Rose')
         @@staff.reject(&:empty?)
         
     end
 
     def self.positions
-        @@positions.delete_at(0)
-        @@positions.delete_at(1)
         @@positions.delete('To follow Jesus every day.')
         @@positions.delete('WORSHIP, COMMUNITY, SERVICE, & INFLUENCE.')
         @@positions.delete('What We Teach')
@@ -71,4 +72,4 @@ class Scraper
         @@positions.clear
     end
 end
-binding.pry
+Scraper.new

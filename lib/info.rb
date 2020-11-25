@@ -1,9 +1,8 @@
-require 'pry'
+
 require 'nokogiri'
 require 'open-uri'
 
 require_relative '../lib/scraper.rb'
-require_relative '../lib/cli.rb'
 
 class Info
 
@@ -16,6 +15,7 @@ class Info
     end
 
     def self.positions
-        Scraper.positions
+        Scraper.positions[2..]
     end
 end
+Info.new

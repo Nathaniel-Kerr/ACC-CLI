@@ -1,4 +1,4 @@
-require 'pry'
+
 require 'nokogiri'
 require 'open-uri'
 
@@ -6,6 +6,10 @@ require_relative '../lib/scraper.rb'
 require_relative '../lib/info.rb'
 
 class CLI
+
+    def initialize
+        call_to_action
+    end
 
     def call_to_action
         puts "Welcome to ACC! Would you like to see our staff? Enter 'yes' or 'no'."
@@ -23,24 +27,29 @@ class CLI
     def make_selection
         puts "Choose a name and enter the number to see position."
         input = gets.chomp.to_i
-        puts "You have picked the #{Info.positions[input]}"
-        sleep(3)
-        puts "Would you like to see another? 'yes' or 'no'.."
+        puts "You have picked #{Info.staff[input]} the #{Info.positions[input]}"
+        sleep(2)
+        puts ""
+        puts "Go again? 'yes' or 'no'.."
         input2 = gets.chomp 
         if input2 == "yes"
-            call_to_action
+            CLI.new
         elsif input2 == "no" 
-            "Thanks for checking in. BYE!"
-        else invalid_input
+            puts "Thanks for checking in. BYE!"
+        else 
+            invalid_input
         end
     end
 
     def invalid_input
-        puts "Invalid Input. Would you like to see more staff? 'yes' - 'no'"
+        puts "Invalid Input. Go again? 'yes' - 'no'"
         input = gets.chomp
         if input == "yes"
-            call_to_action
-        else "BYE"
+            CLI.new
+        else 
+            puts "See ya, Thanks for your time!"
         end
     end
 end
+
+CLI.new
