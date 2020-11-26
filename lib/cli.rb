@@ -31,12 +31,21 @@ class CLI
         puts ""
         Info.list_staff
         puts ""
-        
         puts "Choose a name and enter the number to see position."
-        input = gets.chomp.to_i
-        if input > 33 
+        
+        valid?  
+    end
+
+    def valid?
+        input = gets.chomp
+        if input.chars.any? {|char| ('a'..'z').include? char.downcase} || input.to_i > 33
             invalid_input
-        else valid?  
+        else
+            input = input.to_i
+            puts ""
+            puts "You have picked #{Info.staff[input]} the #{Info.positions[input]}"
+            sleep(3)
+            go_again
         end
     end
 
@@ -59,22 +68,6 @@ class CLI
         puts ""
         puts "INVALID INPUT."
         go_again
-    end
-
-    def valid?
-        puts ""
-        puts "Enter again to verify your selection or choose new number."
-        input = gets.chomp
-
-        if input.chars.any? {|char| ('a'..'z').include? char.downcase}
-            invalid_input
-        else
-            input = input.to_i
-            puts ""
-            puts "You have picked #{Info.staff[input]} the #{Info.positions[input]}"
-            sleep(3)
-            go_again
-        end
     end
 end
 
