@@ -20,9 +20,11 @@ class CLI
         if input == "yes"
             make_selection
         elsif input == "no"
-            "It was a pleasure to meet you!"
+            say_goodbye
         else 
-            "Please enter 'yes' or 'no'"
+            puts ""
+            puts " -#{input}-  Invalid, please enter 'yes' or 'no'"
+            sleep(3)
             call_to_action
         end 
     end
@@ -52,13 +54,12 @@ class CLI
     def go_again
         puts ""
         puts "Go again? 'yes' or 'no'.."
-        input2 = gets.chomp 
+        input = gets.chomp 
 
-        if input2 == "yes"
+        if input == "yes"
             make_selection
-        elsif input2 == "no" 
-            puts ""
-            puts "Thanks for checking in. BYE!"
+        elsif input == "no" 
+            say_goodbye
         else 
             invalid_input
         end
@@ -67,7 +68,13 @@ class CLI
     def invalid_input
         puts ""
         puts "INVALID INPUT."
+        sleep(3)
         go_again
+    end
+
+    def say_goodbye
+        puts ""
+            puts "Thanks for checking in. It was a pleasure to meet you!"
     end
 end
 
