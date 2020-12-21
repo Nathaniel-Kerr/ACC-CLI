@@ -19,7 +19,7 @@ Or install it yourself as:
     $ gem install acc_about
 
 ## Usage
-Run ruby ./lib/cli.rb to get the program started
+To get the program started run bin/run 
 
 ## Development
 

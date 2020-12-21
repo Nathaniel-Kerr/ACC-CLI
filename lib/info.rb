@@ -1,21 +1,23 @@
 
-require 'nokogiri'
-require 'open-uri'
-
-require_relative '../lib/scraper.rb'
-
 class Info
 
+    attr_accessor :name, :position
+
+    @@all = []
+
+    def initialize(name, position)
+        @name = name
+        @position = position 
+        @@all << self
+    end
+
+    def self.all
+        @@all
+    end
+
     def self.list_staff
-        Scraper.staff.select.with_index {|name, index| puts "#{index} - #{name}"}
-    end
-
-    def self.staff
-        Scraper.staff
-    end
-
-    def self.positions
-        Scraper.positions
+        self.all.select {|name| name.name }
     end
 end
-Info.new
+
+

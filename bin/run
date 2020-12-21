@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+require 'nokogiri'
+require 'open-uri'
+require 'pry'
+
+require_relative '../lib/scraper.rb'
+require_relative '../lib/info.rb'
+require_relative '../lib/cli.rb'
+
+CLI.new
